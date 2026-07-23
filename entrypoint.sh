@@ -5,11 +5,15 @@ echo "Starting OpenClaw..."
 
 export OPENCLAW_HOME=/app/.openclaw
 
-mkdir -p $OPENCLAW_HOME
-
+# Jei config jau yra - onboarding nebedaromas
 if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
-    echo "First run: creating OpenCLAW config..."
-    openclaw onboard --skip-health
+    echo "First run: creating OpenClaw config..."
+
+    openclaw onboard \
+      --non-interactive \
+      --accept-risk
+else
+    echo "Existing OpenClaw config found."
 fi
 
 
