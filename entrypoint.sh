@@ -1,18 +1,18 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
-echo "Starting OpenClaw Railway..."
+echo "Starting OpenClaw..."
 
-if [ ! -f "/app/.openclaw/config.json" ]; then
-    echo "Restoring OpenClaw data..."
+export OPENCLAW_HOME=/app/.openclaw
 
-    mkdir -p /app/.openclaw
+mkdir -p $OPENCLAW_HOME
 
-    tar xzf /tmp/openclaw-data.tar.gz \
-    -C /app/.openclaw
+if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
+    echo "First run: creating OpenCLAW config..."
+    openclaw onboard --skip-health
 fi
 
 
 echo "Starting Gateway..."
 
-openclaw gateway
+exec openclaw gateway run --bind 0.0.0.0
