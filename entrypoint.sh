@@ -3,21 +3,17 @@ set -e
 
 export OPENCLAW_HOME=/app/.openclaw
 
-mkdir -p "$OPENCLAW_HOME"
+echo "Starting OpenClaw..."
 
-echo "Using OPENCLAW_HOME=$OPENCLAW_HOME"
+if [ ! -d "$OPENCLAW_HOME/credentials/whatsapp" ]; then
 
-if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
-    echo "Installing default configuration..."
+    echo "Restoring OpenClaw backup..."
 
-    cp /defaults/openclaw.json "$OPENCLAW_HOME/openclaw.json"
+    cp -a /backup/. "$OPENCLAW_HOME/"
+
 fi
 
-mkdir -p "$OPENCLAW_HOME/workspace"
-mkdir -p "$OPENCLAW_HOME/state"
-mkdir -p "$OPENCLAW_HOME/logs"
-mkdir -p "$OPENCLAW_HOME/agents"
 
-echo "Starting OpenClaw Gateway..."
+echo "Starting Gateway..."
 
 exec openclaw gateway run
