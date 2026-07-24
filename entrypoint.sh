@@ -20,6 +20,6 @@ fi
 echo "Starting Gateway..."
 
 exec openclaw gateway run \
- --bind 0.0.0.0 \
+ --bind auto \
  --port "${PORT:-18789}" \
  --token "$OPENCLAW_GATEWAY_TOKEN"
