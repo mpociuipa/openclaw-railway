@@ -3,16 +3,13 @@ set -e
 
 echo "Starting OpenClaw..."
 
-export OPENCLAW_HOME=/root/.openclaw
+export OPENCLAW_HOME=/app/.openclaw
 
-mkdir -p $OPENCLAW_HOME
-
-
-# Restore only if volume is empty
 if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
     echo "Restoring OpenClaw backup..."
 
-    cp -a /tmp/openclaw-backup/. $OPENCLAW_HOME/ || true
+    mkdir -p "$OPENCLAW_HOME"
+    cp -a /tmp/openclaw-backup/. "$OPENCLAW_HOME/"
 
     echo "Backup restored"
 else
@@ -20,15 +17,9 @@ else
 fi
 
 
-echo "Checking config..."
-
-if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
-    echo "Config missing, running setup..."
-
-    openclaw setup --non-interactive || true
-fi
-
-
 echo "Starting Gateway..."
 
-exec openclaw gateway run
+exec openclaw gateway run \
+ --bind 0.0.0.0 \
+ --port "${PORT:-18789}" \
+ --token "$OPENCLAW_GATEWAY_TOKEN"
