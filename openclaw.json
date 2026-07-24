@@ -29,7 +29,7 @@
     "mode": "local",
     "auth": {
       "mode": "token",
-      "token": "e3fe469ad2801dd766a3a828de03a1c75f7521b52dc9165f"
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
     },
     "port": 18789,
     "bind": "lan",
