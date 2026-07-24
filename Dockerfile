@@ -1,10 +1,11 @@
-FROM meistras/openclaw-custom:latest
+FROM node:22
+
+RUN npm install -g openclaw
 
 WORKDIR /app
 
-COPY entrypoint.sh /entrypoint.sh
-COPY openclaw-backup /tmp/openclaw-backup
+COPY openclaw.json /root/.openclaw/openclaw.json
 
-RUN chmod +x /entrypoint.sh
+EXPOSE 18789
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["openclaw","gateway","run","--bind","lan","--port","18789"]
