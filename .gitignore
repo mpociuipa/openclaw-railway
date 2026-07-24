@@ -1,8 +1,10 @@
-*.tar
-*.tar.gz
-node_modules/
-.git
-.env
-openclaw-backup/logs/
-openclaw-backup/workspace/.git/
-openclaw-backup/workspace-public-chat/.git/
+# OpenClaw secrets
+openclaw-backup/credentials/
+openclaw-backup/extensions/
+
+# WhatsApp session data
+openclaw-backup/credentials/whatsapp/
+openclaw-backup/credentials/whatsapp-pairing.json
+
+# Local OpenClaw data
+.openclaw/
