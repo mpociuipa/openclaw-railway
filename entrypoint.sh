@@ -38,4 +38,7 @@ fi
 
 echo "Starting Gateway..."
 
-exec openclaw gateway run --allow-unconfigured
+exec openclaw gateway run \
+--allow-unconfigured \
+--bind auto \
+--port ${PORT:-8080}
