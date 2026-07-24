@@ -5,22 +5,37 @@ echo "Starting OpenClaw..."
 
 export OPENCLAW_HOME=/app/.openclaw
 
-mkdir -p "$OPENCLAW_HOME"
+mkdir -p $OPENCLAW_HOME
 
-echo "Checking OpenClaw files..."
 
-if [ -z "$(ls -A $OPENCLAW_HOME 2>/dev/null)" ]; then
-    echo "Restoring OpenClaw backup..."
-    cp -a /tmp/openclaw-backup/. "$OPENCLAW_HOME/"
-    echo "Backup restored"
-else
-    echo "Existing OpenClaw volume found. Skip restore."
+if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
+    echo "No config found"
+
+    if [ -d "/tmp/openclaw-backup" ]; then
+        echo "Restoring backup..."
+        cp -a /tmp/openclaw-backup/. $OPENCLAW_HOME/
+    fi
+fi
+
+
+if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
+    echo "Creating minimal config..."
+
+    cat > $OPENCLAW_HOME/openclaw.json <<EOF
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "auto",
+    "auth": {
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
+    }
+  }
+}
+EOF
+
 fi
 
 
 echo "Starting Gateway..."
 
-exec openclaw gateway run \
- --bind auto \
- --allow-unconfigured \
- --port "${PORT:-18789}"
+exec openclaw gateway run --allow-unconfigured
