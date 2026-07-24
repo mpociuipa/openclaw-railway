@@ -14,6 +14,12 @@ if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
     if [ -d "/tmp/openclaw-backup" ]; then
         echo "Restoring backup..."
         cp -a /tmp/openclaw-backup/. $OPENCLAW_HOME/
+
+	echo "Backup restored"
+
+	echo "===== CONFIG CHECK ====="
+	cat /app/.openclaw/openclaw.json | grep -A10 controlUi || true
+	echo "========================"
     fi
 fi
 
