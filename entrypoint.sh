@@ -1,22 +1,14 @@
 #!/bin/bash
 set -e
 
-echo "Starting OpenClaw..."
-
 export OPENCLAW_HOME=/app/.openclaw
 
-# Jei config jau yra - onboarding nebedaromas
-if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
-    echo "First run: creating OpenClaw config..."
+mkdir -p "$OPENCLAW_HOME"
 
-    openclaw onboard \
-      --non-interactive \
-      --accept-risk
-else
-    echo "Existing OpenClaw config found."
+if [ ! -f "$OPENCLAW_HOME/openclaw.json" ]; then
+    echo "No config found."
+    echo "Copying default config..."
+    cp /defaults/openclaw.json "$OPENCLAW_HOME/openclaw.json"
 fi
 
-
-echo "Starting Gateway..."
-
-exec openclaw gateway run --bind 0.0.0.0
+exec openclaw gateway run
