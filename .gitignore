@@ -1,4 +1,8 @@
 *.tar
+*.tar.gz
 node_modules/
 .git
 .env
+openclaw-backup/logs/
+openclaw-backup/workspace/.git/
+openclaw-backup/workspace-public-chat/.git/

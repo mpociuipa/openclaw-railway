@@ -1,8 +1,9 @@
 FROM meistras/openclaw-custom:latest
 
-COPY openclaw-backup /backup
+WORKDIR /app
 
 COPY entrypoint.sh /entrypoint.sh
+COPY openclaw-backup /tmp/openclaw-backup
 
 RUN chmod +x /entrypoint.sh
 
