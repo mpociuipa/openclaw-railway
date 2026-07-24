@@ -1,0 +1,79 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/app/.openclaw/.openclaw/workspace",
+      "model": {
+        "primary": "openai/gpt-5.6"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "e3fe469ad2801dd766a3a828de03a1c75f7521b52dc9165f"
+    },
+    "port": 18789,
+    "bind": "lan",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "hooks": {
+    "internal": {
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-07-23T13:38:21.298Z",
+    "lastRunVersion": "2026.7.1-2",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.7.1-2",
+    "lastTouchedAt": "2026-07-23T14:00:12.976Z"
+  },
+  "plugins": {
+    "entries": {
+      "whatsapp": {
+        "enabled": true
+      },
+      "openai": {
+        "enabled": true
+      }
+    },
+    "allow": [
+      "whatsapp",
+      "openai"
+    ]
+  },
+  "channels": {
+    "whatsapp": {
+      "accounts": {
+        "default": {
+          "enabled": true,
+          "allowFrom": [
+            "+37060414208"
+          ]
+        }
+      }
+    }
+  }
+}

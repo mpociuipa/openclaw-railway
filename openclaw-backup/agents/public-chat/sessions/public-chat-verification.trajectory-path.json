@@ -1,0 +1,6 @@
+{
+  "traceSchema": "openclaw-trajectory-pointer",
+  "schemaVersion": 1,
+  "sessionId": "public-chat-verification",
+  "runtimeFile": "/app/.openclaw/.openclaw/agents/public-chat/sessions/public-chat-verification.trajectory.jsonl"
+}
